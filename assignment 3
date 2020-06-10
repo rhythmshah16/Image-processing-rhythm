@@ -11,8 +11,8 @@ while True:
     w1 = 0
     while True:
         cv2.imshow('image',ing)
-        cv2.rectangle(img,(width1,height1),(width2,height2),(random.randint(0,255)),(random.randint(0,255)),(random.randint(0,255)),-1)
-        img[h1:h2,w1:w2]=rando
+        cv2.rectangle(img,(w1,h1),(w2,h2),(random.randint(0,255)),(random.randint(0,255)),(random.randint(0,255)),-1)
+       
         w1 += w1
         w2 += h2
 
