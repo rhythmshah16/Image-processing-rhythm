@@ -8,8 +8,8 @@ print(img.shape)
 width1 = 0
 height1 = 0
 
-width2 = int(980/7)
-height2 = int(1480/7)
+width2 = int(1020/7)
+height2 = int(1940/7)
 
 while True:
     cv2.rectangle(img,(width1,height1),(width2,height2),(random.randint(0,255)),(random.randint(0,255)),(random.randint(0,255)),-1)
