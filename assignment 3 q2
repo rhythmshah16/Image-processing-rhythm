@@ -1,0 +1,42 @@
+import cv2
+import numpy as np 
+import random 
+
+img = cv2.imread('B99.jpg')
+
+print(img.shape)
+w1 = 0
+h1 = 0
+
+w2 = int(1080/7)
+h2 = int(1920/7)
+counter = 0
+while True:
+    if counter == 0:
+        w1 = 0
+        w2 = int(1080/7)
+        while True:
+            cv2.rectangle(img,(w1,h1),(w2,h2),(random.randint(0,255)),(random.randint(0,255)),(random.randint(0,255)),-1)
+            cv2.imshow('image',img)
+            cv2.waitkey(500)
+            w1 += int(1080/7)
+            h1 += int(1920/7)
+            counter += 1
+            if w2>1080:
+                break
+            else:
+
+                w1 += 1080
+                h1 += 1920
+                while True:
+                cv2.rectangle(img,(w1,h1),(w2,h2),(random.randint(0,255)),(random.randint(0,255)),(random.randint(0,255)),-1)
+                cv2.imshow('image',img)
+                cv2.waitKey(500)
+                w1 -= int(1080/7)
+                h1 -= int(1920/7)
+    w2 += int(1080/7)
+    h2 += int(1920/7)
+    counter += 1
+    if h2>1920:
+        break
+     
