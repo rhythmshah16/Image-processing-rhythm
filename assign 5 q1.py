@@ -20,7 +20,7 @@ def mouse(event,x,y,flags,param):
             cv2 .imwrite('template img.jpg',cropped)
 
             
-cv2.namewindow('frame')
+cv2.namedWindow('frame')
 cv2.setMouseCallback('frame',mouse)
 while True:
     x,frame = cap.read()
