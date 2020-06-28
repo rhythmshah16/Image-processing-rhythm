@@ -123,11 +123,11 @@ ocr_button=tk.Button(Frame,text='ocr',bg='blue',padx=8,pady=8,command=ocr_button
 ocr_button.pack()
 ocr_button.place(x=600,y=50)
 
-autocrop_button=tk.Button(Frame,text='auto crop',bg='blue',padx=8,pady=8,command=auto_button_clicked)
+autocrop_button=tk.Button(Frame,text='auto crop',bg='blue',padx=8,pady=8,command=autocrop_button_clicked)
 autocrop_button.pack()
-autocrop_button.place(x=600,y=130)
+autocrop_button.place(x=560,y=130)
 
 text_button =tk.Button(Frame,text='show text',bg='blue',padx=8,pady=8,command=show_text_button_clicked)
 text_button.pack()
-text_button.place(x=600,y=210)
+text_button.place(x=560,y=210)
 root.mainloop()
