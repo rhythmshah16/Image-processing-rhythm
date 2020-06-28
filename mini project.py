@@ -64,7 +64,7 @@ def autocrop_button_clicked():
     global transformed
     img = np.copy(og_img)
     ratio = img.shape[1]/img.shape[0]
-	height = int (1100/ratio)
+    height = int (1100/ratio)
     TransformedImage = cv2.resize(img,(1100,height))
     img_gray = cv2.cvtColor(TransformedImage,cv2.COLOR_BGR2GRAY)
     adaptive = cv2.adaptiveThreshold(img_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,55,3)
