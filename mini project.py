@@ -1,15 +1,22 @@
-import tkinter as tk
-from tkinter import filedialog,Text
-from PIL import Image,ImageTk
-import pytesseract
-from pytesseract import Output
-import os
 import cv2
 import numpy as np
+import pytesseract
+from pytesseract import Output
+import tkinter as tk
+from tkinter import filedialog,Text
+from tkinter import *
+from PIL import Image,ImageTk
 
 root = tk.Tk()
+
 og_img=np.zeros((),np.uint8)
 pts=[]
+texts=''
+
+canvas=tk.Canvas(root,height=800,width=800,bg='green')
+Frame= tk.Frame (canvas,bg='white')
+Frame.place(relx=0.1, rely=0.1, relwidth=0.8, relheight=0.8)
+
 
 # function #
 def open_button_clicked():
@@ -47,8 +54,10 @@ def blur_button_clicked():
 	cv2.imshow('Image',gaussianblur)
 
 def ocr_button_clicked():
+    global texts
     global img1
     img1=np.copy(og_img)
+    string = ''
 
     data=pytesseract.image_to_data(img1,output_type=Output.DICT)
     no_word=len(data['text'])
@@ -56,9 +65,11 @@ def ocr_button_clicked():
         if int(data['conf'][i])>50:
             x,y,w,h=data['left'][i],data['top'][i],data['width'][i],data['height'][i]
             cv2.rectangle(img1,(x,y),(x+w,y+h),(0,255,0),2)
+            string=string+data['text'][i]+' '
             
             cv2.imshow('img',img1)
             cv2.waitKey(100)
+    texts = string
 
 def autocrop_button_clicked():
     global transformed
@@ -91,18 +102,12 @@ def autocrop_button_clicked():
         cv2.waitKey(0)
 
 def show_text_button_clicked():
-    textbox = tk.Frame(frame,bg='#FDFFD6')
-    textbox.place(x=300,y=300)
+    textbox=tk.Frame(Frame)
+    text1=Text(textbox, fg='black', bg='#fcffc2', wrap=WORD)
+    text1.pack()
+    textbox.place(relx=0.25,rely=0.3,relwidth=0.47,relheight=0.55)
+    text1.insert('1.0',texts)
 
-    text =Text(textbox,bg='#FDFFD6')
-    text.insert('1.0',"text box works!!")
-    text.pack()
-
-
-canvas=tk.Canvas(root,height=800,width=800,bg='green')
-canvas.pack()
-Frame =tk.Frame(canvas,bg='white')
-Frame.place(relx=0.1,rely=0.1,relwidth=0.8,relheight=0.8)
 
 #buttons#	
 
@@ -130,4 +135,6 @@ autocrop_button.place(x=560,y=130)
 text_button =tk.Button(Frame,text='show text',bg='blue',padx=8,pady=8,command=show_text_button_clicked)
 text_button.pack()
 text_button.place(x=560,y=210)
+
+canvas.pack()
 root.mainloop()
